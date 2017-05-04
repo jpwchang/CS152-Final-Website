@@ -1,0 +1,7 @@
+site_name: "CS152 Final Project: Multi-Adversarial Autoencoders"
+pages:
+  - Multi-Adverarial Autoencoders: index.md
+repo_name: "jpwchang/CS152-Multi-AAE"
+repo_url: "https://github.com/jpwchang/CS152-Multi-AAE"
+theme: "material"
+theme_dir: "theme"
