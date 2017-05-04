@@ -73,9 +73,9 @@ for how to make the discriminators different from each other:
 We decided to try both of these approaches, to compare their impact on performance.
 Our experimental procedure is as follows:
 
-1. Run the basic adversarial autoencoder on a dataset for N epochs to gain a baseline for comparisons.
-2. Run a multi-adversarial autoencoder using the subset approach for N epochs and compare the results.
-3. Run a multi-adversarial autoencoder using the varied parameters approach for N epochs and compare the results.
+1. Run the basic adversarial autoencoder on a dataset for 12 epochs to gain a baseline for comparisons.
+2. Run a multi-adversarial autoencoder using the subset approach for 12 epochs and compare the results.
+3. Run a multi-adversarial autoencoder using the varied parameters approach for 12 epochs and compare the results.
 
 We wanted to avoid common datasets like MNIST and CIFAR-10, simply because they
 have been used so often and there are already models that do very well on them.
@@ -87,10 +87,10 @@ training time, all images were scaled down to 32x32 pixels.
 ## Results and Conclusions
 
 As mentioned previously, our baseline for comparisons is the standard adversarial
-autoencoder. The outputs of the standard adversarial autoencoder after N epochs
+autoencoder. The outputs of the standard adversarial autoencoder after 12 epochs
 of training on our Pokemon dataset are shown below:
 
-INSERT FIGURE HERE
+![Baseline AAE](img/baseline_generated.png)
 
 The outputs are definitely fuzzy and not very well-defined. However, this is
 somewhat to be expected since autoencoders are a lossy compression method, and
@@ -103,10 +103,11 @@ generated results, so these outputs serve as a suitable baseline.
 
 Our next experiment was with the subset-based multi-adversary approach. For our
 implementation, we decided to give each of the 5 adversaries 1/5 of the encoding.
-The outputs of this multi-adversarial autoencoder after N epochs of training
+The outputs of this multi-adversarial autoencoder after 12 epochs of training
 on our Pokemon dataset are shown below:
 
-INSERT FIGURE HERE
+![Split-Encoding MAAE](img/split_generated.png)
+
 
 We find that the generative ability of this network is heavily diminished. The
 generated outputs are essentially just shapeless blobs with dull colors. We do
@@ -117,9 +118,9 @@ Finally, our last experiment was with the varied parameters approach. For our
 implementation, we decided to vary the learning rate and the loss weight for
 each discriminator (the loss weight is a value specifying how much each
 discriminator's loss contributes to the overall loss). The outputs of this
-multi-adversarial autoencoder after N epochs of training are shown below:
+multi-adversarial autoencoder after 12 epochs of training are shown below:
 
-INSERT FIGURE HERE
+![Varied-Parameter MAAE](img/varied_generated.png)
 
 Qualitatively, performance seems fairly similar to the standard adversarial
 autoencoder. The generated outputs still look vaguely Pokemon-shaped with
