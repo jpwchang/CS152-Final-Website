@@ -88,9 +88,12 @@ training time, all images were scaled down to 32x32 pixels.
 
 As mentioned previously, our baseline for comparisons is the standard adversarial
 autoencoder. The outputs of the standard adversarial autoencoder after 12 epochs
-of training on our Pokemon dataset are shown below:
+of training on our Pokemon dataset are shown below. The left hand image shows the
+results of autoencoding images from the dataset (the leftmost column shows the
+original images being autoencoded), while the right hand image shows the results
+of generating new samples based on the prior distribution.
 
-![Baseline AAE](img/baseline_generated.png)
+![Baseline AAE](img/baseline_results.png)
 
 The outputs are definitely fuzzy and not very well-defined. However, this is
 somewhat to be expected since autoencoders are a lossy compression method, and
@@ -106,7 +109,7 @@ implementation, we decided to give each of the 5 adversaries 1/5 of the encoding
 The outputs of this multi-adversarial autoencoder after 12 epochs of training
 on our Pokemon dataset are shown below:
 
-![Split-Encoding MAAE](img/split_generated.png)
+![Split-Encoding MAAE](img/subset_results.png)
 
 
 We find that the generative ability of this network is heavily diminished. The
@@ -120,11 +123,14 @@ each discriminator (the loss weight is a value specifying how much each
 discriminator's loss contributes to the overall loss). The outputs of this
 multi-adversarial autoencoder after 12 epochs of training are shown below:
 
-![Varied-Parameter MAAE](img/varied_generated.png)
+![Varied-Parameter MAAE](img/varied_results.png)
 
-Qualitatively, performance seems fairly similar to the standard adversarial
-autoencoder. The generated outputs still look vaguely Pokemon-shaped with
-interesting coloring.
+Qualitatively, the generated images seem to have Pokemon-like shapes, as they
+did in the baseline. However, the colors appear diminished by comparison.
+We note, however, that when we tried running this model for more epochs, it
+eventually did generate outputs comparable to the baseline, in terms of both
+shape and color. In other words, performance is similar to the baseline but
+slower to converge.
 
 From these experiments, we draw the following conclusions:
 
@@ -141,7 +147,8 @@ From these experiments, we draw the following conclusions:
   encoding it can.
 - Varying the parameters of each discriminator seems to be a more promising
   approach, in that it does not visibly hurt the model's generative ability.
-  However, we also did not see any significant improvement in performance either.
+  However, in our experimentation it made the model converge slower, rather 
+  than faster, as described above.
   It might be that we need to vary different parameters, or use different ranges
   of values for the parameters we are varying. This may be a good avenue for
   future exploration.
